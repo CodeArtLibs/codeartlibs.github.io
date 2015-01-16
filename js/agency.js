@@ -44,7 +44,7 @@ function reloadBackground() {
     // $([imageUrl]).preload() // memory leak 200kb?
     setTimeout(function() {
         // memory-leak here: huge
-        // $("#header").css("background-image", 'url(' + imageUrl + ')')
+        $("#header").css("background-image", 'url(' + imageUrl + ')')
 
         // memory leak? 200kb
         setTimeout(reloadBackground, 5000)
