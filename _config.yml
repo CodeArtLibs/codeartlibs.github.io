@@ -89,6 +89,7 @@ plans:
   price_dollar:
   features:
 
+partner_cols: 3
 partners:
 - name: IME/USP
   url: https://www.ime.usp.br/dcc/empresas-egressos
@@ -96,9 +97,9 @@ partners:
 - name: CCSL/USP
   url: http://ccsl.ime.usp.br
   logo: http://ccsl.ime.usp.br/files/logo_ccsl_preview_small.png
-- name: Neurobox
-  url: http://www.neurobox.com.br
-  logo: http://www.neurobox.com.br/wp-content/uploads/2014/09/logotype-duo.png
+# - name: Neurobox
+#   url: http://www.neurobox.com.br
+#   logo: http://www.neurobox.com.br/wp-content/uploads/2014/09/logotype-duo.png
 
 portifolio:
 - name: Game Algorithms Tournament
