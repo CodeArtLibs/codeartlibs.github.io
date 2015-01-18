@@ -1,0 +1,21 @@
+{% if site.partners %}
+<section id="partners" class="partners">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Partners</h2>
+                <h3 class="section-subheading text-muted"></h3>
+            </div>
+        </div>
+        <div class="row">
+            {% for partner in site.partners %}
+            <div class="col-lg-{{ site.partner_cols }} col-md-{{ site.partner_cols }} col-xs-12">
+                <a href="{{ partner.url }}">
+                    <img src="{{ partner.logo }}" class="img-responsive img-centered" alt="{{ partner.name }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

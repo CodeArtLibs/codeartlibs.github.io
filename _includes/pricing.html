@@ -1,0 +1,34 @@
+{% if site.plans %}
+<section id="pricing">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Pricing</h2>
+                <h3 class="section-subheading text-muted">A plan for every context</h3>
+            </div>
+        </div>
+        <div class="row text-center flat">
+
+        {% for plan in site.plans %}
+            <div class="col-lg-{{ site.plan_cols }} col-md-{{ site.plan_cols }} col-xs-12">
+                <ul class="plan plan1">
+                    <li class="plan-name">
+                        {{ plan.name }}
+                    </li>
+                    {% for feature in plan.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                    <li class="plan-price">
+                        <strong>{{ plan.price }}</strong>
+                        {{ plan.annual_price }}
+                    </li>
+                    <li class="plan-action">
+                        <a href="{{ plan.link }}" class="btn btn-success btn-lg">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

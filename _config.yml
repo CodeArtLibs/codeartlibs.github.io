@@ -14,7 +14,7 @@ markdown: redcarpet
 # Site settings
 name: CodeArT
 title: CodeArT
-subtitle: Simplicidade e qualidade
+subtitle: Agilidade, rapidez e qualidade
 
 # Contact
 email: support@codeart.io
@@ -30,8 +30,8 @@ favicon: http://s3-us-west-2.amazonaws.com/codeart/favicon.png
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://codeart.io" # the base hostname & protocol for your site
 doc_url:
-system_url: http://accounts.codeart.io
-demo_url:
+system_url:
+demo_url: http://accounts.codeart.io
 
 # Social settings
 social:
@@ -71,25 +71,28 @@ sections:
   slug: #test
   html:
 
-features:
-- name:
-  url:
-
 services:
-- name: Single Sign On
-  url: accounts.codeart.io
-- name: Tasks
-  url: tasks.codeart.io
-- name: Safe passwords
-  url: safe.codeart.io
+- name: Serviços para cloud
+  description: AWS, Google App Engine, Heroku ...
+  icon: fa-cloud
+- name: Consultoria
+  description: Orientação a Objetos, Testes, Métodos Ágeis ...
+  icon: fa-exclamation-circle
+- name: Desenvolvimento
+  description: Python, iOS, Android, Java ...
+  icon: fa-superscript
 
-plans:
-- name:
-  price_real:
-  price_dollar:
-  features:
+# features:
+# - name:
+#   url:
 
-partner_cols: 3
+# plans:
+# - name:
+#   price_real:
+#   price_dollar:
+#   features:
+
+partner_cols: 6
 partners:
 - name: IME/USP
   url: https://www.ime.usp.br/dcc/empresas-egressos
@@ -100,21 +103,39 @@ partners:
 # - name: Neurobox
 #   url: http://www.neurobox.com.br
 #   logo: http://www.neurobox.com.br/wp-content/uploads/2014/09/logotype-duo.png
+# - name: Smart.PR
+#   url: http://smart.pr
+#   logo: http://smart.pr/wp-content/uploads/Logo_Color_Retina2.png
 
-portifolio:
+portfolio:
 - name: Game Algorithms Tournament
   url: http://gatournament.com
+  description: Um sistema de competição de algoritimos com uma complexa arquitetura.
+  logo: http://www.gatournament.com/static/img/logo.png
+- name: Single Sign On
+  url: accounts.codeart.io
+  description:
+  logo:
+- name: Tasks
+  url: tasks.codeart.io
+  description:
+  logo:
+- name: Safe passwords
+  url: safe.codeart.io
+  description:
+  logo:
 
-team:
-- name: Paulo Cheque
-  position: CEO
-  linkedin:
-  github:
-  stackoverflow:
-  pic: 1
+# team:
+# - name: Paulo Cheque
+#   position: CEO
+#   linkedin:
+#   github:
+#   stackoverflow:
+#   pic: 1
 
 
 # About
+# about:
 description: >
   CodeArT (codeart.io) is a brazilian company of software development
   and consultant services.
