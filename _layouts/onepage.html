@@ -50,12 +50,12 @@
                     </li>
                     {% if site.about %}
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about">Sobre</a>
                     </li>
                     {% endif %}
                     {% if site.services %}
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#services">Serviços</a>
                     </li>
                     {% endif %}
                     {% if site.features %}
@@ -65,22 +65,22 @@
                     {% endif %}
                     {% if site.plans %}
                     <li>
-                        <a class="page-scroll" href="#pricing">Pricing</a>
+                        <a class="page-scroll" href="#pricing">Orçamento</a>
                     </li>
                     {% endif %}
                     {% if site.portfolio %}
                     <li>
-                        <a class="page-scroll" href="#portfolio">Portifolio</a>
+                        <a class="page-scroll" href="#portfolio">Portfólio</a>
                     </li>
                     {% endif %}
                     {% if site.partners %}
                     <li>
-                        <a class="page-scroll" href="#partners">Partners</a>
+                        <a class="page-scroll" href="#partners">Apoio</a>
                     </li>
                     {% endif %}
                     {% if site.team %}
                     <li>
-                        <a class="page-scroll" href="#team">Team</a>
+                        <a class="page-scroll" href="#team">Time</a>
                     </li>
                     {% endif %}
                     {% for section in site.sections %}
@@ -91,7 +91,7 @@
                     {% endif %}
                     {% endfor %}
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -106,7 +106,11 @@
                 {% if site.system_url %}
                 <a href="{{ site.system_url }}" class="page-scroll btn btn-xl">Sign In / Sign Up</a>
                 {% else %}
-                <a href="#about" class="page-scroll btn btn-xl">Learn more</a>
+                    {% if site.about %}
+                    <a href="#about" class="page-scroll btn btn-xl">Saiba mais</a>
+                    {% else %}
+                    <a href="#services" class="page-scroll btn btn-xl">Saiba mais</a>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

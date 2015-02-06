@@ -108,22 +108,26 @@ partners:
 #   logo: http://smart.pr/wp-content/uploads/Logo_Color_Retina2.png
 
 portfolio:
+- name: Campus Party 2015
+  url: files/CampusParty2015-QualidadecomAgilidade.pdf
+  description: Apresentação Qualidade com Agilidade Para Startups
+  logo: http://www.conscienciaampla.com.br/wp-content/uploads/2013/01/campus-party.jpg
 - name: Game Algorithms Tournament
   url: http://gatournament.com
-  description: Um sistema de competição de algoritimos com uma complexa arquitetura.
+  description: Um sistema de competição de algoritimos de jogos
   logo: http://www.gatournament.com/static/img/logo.png
-- name: Single Sign On
-  url: accounts.codeart.io
-  description:
-  logo:
-- name: Tasks
-  url: tasks.codeart.io
-  description:
-  logo:
-- name: Safe passwords
-  url: safe.codeart.io
-  description:
-  logo:
+# - name: Single Sign On
+#   url: accounts.codeart.io
+#   description:
+#   logo:
+# - name: Tasks
+#   url: tasks.codeart.io
+#   description:
+#   logo:
+# - name: Safe passwords
+#   url: safe.codeart.io
+#   description:
+#   logo:
 
 # team:
 # - name: Paulo Cheque
