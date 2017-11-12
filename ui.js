@@ -18,16 +18,10 @@ class CodeArtScene {
         this.subtitle = null
         this.email = null
 
-        this.xMovement = -0.2
+        this.xMovement = -0.1
     }
 
     init () {
-        // var geometry = new THREE.Geometry();
-        // var material = new THREE.LineBasicMaterial({ color: 0x0000ff });
-        // geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
-        // geometry.vertices.push(new THREE.Vector3(0, 10, 0));
-        // geometry.vertices.push(new THREE.Vector3(10, 0, 0));
-        // scene.add( new THREE.Mesh( geometry, material ) )
         this._buildScene()
         this._buildCamera()
         this._buildRenderer()
@@ -37,12 +31,16 @@ class CodeArtScene {
 
     _buildScene () {
         this.scene = new THREE.Scene()
-        // this._buildBox()
-        this._buildTitle()
-        this._buildSubtitle()
-        this._buildEmail()
-        // this._buildAxes()
         this._buildLights()
+
+        var loader = new THREE.FontLoader()
+        loader.load( 'Virgo 01_Regular.json', ( font ) => {
+            this._buildTitle(font)
+            this._buildSubtitle(font)
+            this._buildEmail(font)
+        })
+        // this._buildBox()
+        // this._buildAxes()
     }
 
     _buildCamera () {
@@ -51,22 +49,11 @@ class CodeArtScene {
         this.camera.lookAt(new THREE.Vector3(0, 0, 0))
     }
 
-    _buildLights () {
-        //ambient light which is for the whole scene
-        let ambientLight = new THREE.AmbientLight(0x00fff0, 0.5)
-        ambientLight.castShadow = false
-        this.scene.add(ambientLight)
-
-        //spot light which is illuminating the chart directly
-        let spotLight = new THREE.SpotLight(0x0000ff, 0.9)
-        spotLight.castShadow = false
-        spotLight.position.set(0,-40,100)
-        this.scene.add(spotLight)
-    }
-
     _buildRenderer () {
         this.renderer = new THREE.WebGLRenderer( { antialias: true } )
         this.renderer.setSize( window.innerWidth, window.innerHeight )
+        this.renderer.shadowMap.enabled = true
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
     }
 
     onKeyDown ( event ) {
@@ -86,6 +73,26 @@ class CodeArtScene {
         document.addEventListener( 'keydown', this.onKeyDown.bind(this), false )
     }
 
+    _buildLights () {
+        //ambient light which is for the whole scene
+        let ambientLight = new THREE.AmbientLight(0x00fff0, 0.5)
+        ambientLight.castShadow = false
+        this.scene.add(ambientLight)
+
+        //spot light which is illuminating the chart directly
+        let spotLight = new THREE.SpotLight(0x0000ff, 0.9)
+        spotLight.castShadow = false
+        spotLight.position.set(0,-40,100)
+        this.scene.add(spotLight)
+
+        var pointLight = new THREE.PointLight(0xFFFF00)
+        pointLight.position.set(0,-40,50)
+        pointLight.castShadow = true;
+        pointLight.shadow.mapSize.width = 1024;
+        pointLight.shadow.mapSize.height = 1024;
+        this.scene.add(pointLight)
+    }
+
     _buildBox () {
         var geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 )
         var material = new THREE.MeshNormalMaterial({ lights: true })
@@ -93,73 +100,62 @@ class CodeArtScene {
         this.scene.add(this.box)
     }
 
-    _buildTitle () {
-        var loader = new THREE.FontLoader()
-        loader.load( 'Virgo 01_Regular.json', ( font ) => {
-            var material = new THREE.MeshPhongMaterial()
-            material.lights = true
-            // material.flashShading = true
-            material.wireframe = true
-            var geometry = new THREE.TextGeometry( 'CodeArt', {
-                font: font,
-                size: 20,
-                height: 10,
-                curveSegments: 10,
-                bevelEnabled: false,
-                bevelThickness: 10,
-                bevelSize: 5,
-                bevelSegments: 5
-            } )
-            this.title = new THREE.Mesh( geometry, material )
-            this.title.position.set(-50, 0, 0)
-            this.scene.add(this.title)
+    _buildTitle (font) {
+        var material = new THREE.MeshPhongMaterial()
+        material.lights = true
+        // material.flashShading = true
+        material.wireframe = true
+        var geometry = new THREE.TextGeometry( 'CodeArt', {
+            font: font,
+            size: 20,
+            height: 10,
+            curveSegments: 10,
+            bevelEnabled: false,
+            bevelThickness: 10,
+            bevelSize: 5,
+            bevelSegments: 5
         } )
+        this.title = new THREE.Mesh( geometry, material )
+        this.title.position.set(-50, 0, 0)
+        this.title.castShadow = true
+        this.title.receiveShadow = true
+        this.scene.add(this.title)
     }
 
-    _buildSubtitle () {
-        var loader = new THREE.FontLoader()
-        loader.load( 'Virgo 01_Regular.json', ( font ) => {
-            var material = new THREE.MeshPhongMaterial()
-            material.lights = true
-            // material.flashShading = true
-            // material.wireframe = true
-            var geometry = new THREE.TextGeometry( 'IT Services', {
-                font: font,
-                size: 8,
-                height: 5,
-                curveSegments: 10,
-                bevelEnabled: false,
-                bevelThickness: 10,
-                bevelSize: 5,
-                bevelSegments: 5
-            } )
-            this.subtitle = new THREE.Mesh( geometry, material )
-            this.subtitle.position.set(-50, -20, 0)
-            this.scene.add(this.subtitle)
+    _buildSubtitle (font) {
+        var material = new THREE.MeshPhongMaterial()
+        material.lights = true
+        var geometry = new THREE.TextGeometry( 'IT Services', {
+            font: font,
+            size: 8,
+            height: 5,
+            curveSegments: 10,
+            bevelEnabled: false,
+            bevelThickness: 10,
+            bevelSize: 5,
+            bevelSegments: 5
         } )
+        this.subtitle = new THREE.Mesh( geometry, material )
+        this.subtitle.position.set(-50, -20, 0)
+        this.scene.add(this.subtitle)
     }
 
-    _buildEmail () {
-        var loader = new THREE.FontLoader()
-        loader.load( 'Virgo 01_Regular.json', ( font ) => {
-            var material = new THREE.MeshPhongMaterial()
-            material.lights = true
-            // material.flashShading = true
-            // material.wireframe = true
-            var geometry = new THREE.TextGeometry( 'contact(at)codeart.io', {
-                font: font,
-                size: 6,
-                height: 5,
-                curveSegments: 10,
-                bevelEnabled: false,
-                bevelThickness: 10,
-                bevelSize: 5,
-                bevelSegments: 5
-            } )
-            this.email = new THREE.Mesh( geometry, material )
-            this.email.position.set(-50, -35, 0)
-            this.scene.add(this.email)
+    _buildEmail (font) {
+        var material = new THREE.MeshPhongMaterial()
+        material.lights = true
+        var geometry = new THREE.TextGeometry( 'contact(at)codeart.io', {
+            font: font,
+            size: 6,
+            height: 5,
+            curveSegments: 10,
+            bevelEnabled: false,
+            bevelThickness: 10,
+            bevelSize: 5,
+            bevelSegments: 5
         } )
+        this.email = new THREE.Mesh( geometry, material )
+        this.email.position.set(-50, -35, 0)
+        this.scene.add(this.email)
     }
 
     _buildAxis( src, dst, colorHex, dashed ) {
@@ -193,16 +189,15 @@ class CodeArtScene {
 
     animate () {
         this.controls.update()
-        requestAnimationFrame(this.animate.bind(this))
         if (this.box) {
             this.box.rotation.x += 0.01
             this.box.rotation.y += 0.02
         }
 
         if (this.title && this.title.position.x < -100) {
-            this.xMovement = 0.2
+            this.xMovement = 0.1
         } else if (this.title && this.title.position.x > 10) {
-            this.xMovement = -0.2
+            this.xMovement = -0.1
         }
         if (this.title) this.title.position.x += this.xMovement
         if (this.subtitle) this.subtitle.position.x += this.xMovement
@@ -210,6 +205,7 @@ class CodeArtScene {
 
         this.camera.position.z += 0.02
         this.renderer.render(this.scene, this.camera)
+        requestAnimationFrame(this.animate.bind(this))
     }
 
     onWindowResize () {
